@@ -2,7 +2,6 @@ package implementation;
 
 import myinterface.MySinglyLinkedList;
 
-import java.nio.channels.NotYetBoundException;
 
 public class MyLinkedList implements MySinglyLinkedList {
     //head reference or start  of linked list or reference of first node
@@ -25,11 +24,36 @@ public class MyLinkedList implements MySinglyLinkedList {
 
     @Override
     public void addLast(int element) {
+        Node node = new Node(element);
+        if(isEmpty()){
+            head = node;
+            tail = node;
+        }
+        else{
+            tail.setNext(node);
+            tail = node;
+        }
+        size++;
 
     }
 
     @Override
     public void addLastWithoutUsingTail(int element) {
+        Node node = new Node(element);
+        if(isEmpty()){
+            head = node;
+            tail = node;
+        }
+        else{
+            Node temp = head;
+            while(temp.getNext() != null){
+                temp = temp.getNext();
+            }
+            //temp is last node
+            temp.setNext(node);
+            tail = node;
+        }
+        size++;
 
     }
 
@@ -109,16 +133,47 @@ public class MyLinkedList implements MySinglyLinkedList {
 
     @Override
     public int removeFirst() {
-        return 0;
+        int response = 0;//considering 0 as invalid data
+        if(!isEmpty()){
+            response = head.getData();
+            head = head.getNext();
+            if(head == null){
+                tail = null;
+            }
+            size--;
+        }
+        return response;
     }
 
     @Override
     public int removeLast() {
-        return 0;
+        int response = 0;
+        if(!isEmpty()){
+            response = tail.getData();
+            Node temp = head;
+            Node previous = null;
+            while(temp.getNext() != null){
+                previous = temp;
+                temp = temp.getNext();
+            }
+            //multiple nodes in linked list
+            if(previous != null){
+                previous.setNext(null);
+                tail = previous;
+            }
+            //single node
+            else {
+                head = null;
+                tail = null;
+            }
+            size--;
+        }
+        return response;
     }
 
     @Override
     public int removeGivenNode(int givenElement) {
+
         return 0;
     }
 
