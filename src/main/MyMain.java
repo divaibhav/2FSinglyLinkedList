@@ -14,5 +14,6 @@ public class MyMain {
         linkedList.addAfterGivenNode(500,100);
         linkedList.traverse();
         System.out.println(linkedList.last());
+        linkedList.traverseReverse(linkedList.getHead());
     }
 }

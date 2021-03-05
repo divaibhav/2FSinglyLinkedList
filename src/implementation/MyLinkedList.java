@@ -197,4 +197,17 @@ public class MyLinkedList implements MySinglyLinkedList {
         }
         return 0;
     }
+
+    public Node getHead() {
+        return head;
+    }
+
+    //printing linked list in reverse
+    public void traverseReverse(Node node){
+        if(node == null){
+            return;
+        }
+        traverseReverse(node.getNext());
+        System.out.print(node.getData() +",");
+    }
 }
